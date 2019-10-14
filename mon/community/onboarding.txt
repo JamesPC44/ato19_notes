@@ -1,0 +1,98 @@
+## Summary
+
+https://allthingsopen.org/talk/onboarding-open-source-contributors-frame-of-mind-and-inclusion/
+
+## Notes
+
+### Issues for new contributors
+
+- hard to ask for help when maintainers are busy/stressed
+- hard to see what changes are being made
+- documentation out-of-date
+- "Getting Started" guides difficult to follow
+- unclear QA/release process - afraid to break something
+
+### Lessons
+
+- What feels like an open process can seem closed from the outside
+
+### Ways to improve
+
+- Documentation
+- Examples, toolkits
+- Forum
+- Blog posts, podcasts
+
+### Ways it can go wrong
+
+- Rewrite draws attention away from original project
+- New version took longer than planned
+- Fewer docs
+- No adoption
+- Old version got no updates
+- 'Sorry, something went wrong'
+
+### Getting started
+
+- Docs
+- Contribution pathways - not just engineers! need docs, QA, etc.
+- Videos
+- FAQ
+
+### Other ideas
+
+- Webinars
+- Hack-a-thons
+- Organizing issues - very important to have a single issue tracker
+
+### Onboarding
+
+- Make it _very_ clear how to start
+- Mark issues as easy for first-timers
+- Give very explicit instructions on how to solve - may take longer than just solving the issue!
+- Remember that things that are familiar to you are confusing to newcomers
+- Newcomers will run into the same problems as you - make sure you document how to fix them!
+- Jumping on a call/Recording a screencast can be worth it to save time in the long run
+- Thank you for ... is a validation that it's ok to ask for help/make an issue/contribute
+
+### PRs
+
+- about teaching contributors and improving code
+- try not to be nitpicky, be constructive
+- thank the contributor
+- don't let people wait, give some response :(
+- even if you don't have time right now, let contributor know how long it will be
+- explain _why_ PR will not be merged (if applicable)
+- tag contributors in release if PR does get merged
+
+### User difficulty
+
+- ask 'what are the blockers?' for joining
+- imposter syndrome is real
+- useful to have multiple mentors
+- hard to tell when people spend way too long on something (16 hrs for something that's simple for you)
+  - esp. with time zones
+- show your own mistakes so others can learn from them
+  - makes others less afraid to fail
+
+### Communication barriers
+
+- (for big projects, less relevant in US) don't assume all communication must be in English
+- Implicit/explicit hierarchies
+  - I ran into this with git - didn't realize Junio was the lead maintainer, was a little curt
+
+## Summary
+
+- See your community from the contributor side - they don't have the support you do
+- Interns help you see things with fresh eyes (on a longer time scale)
+- Allow questions in both public and private
+  - Newcomers are very afraid to ask questions in public
+- Set the tone: be nice, say thank you
+  - Not something you can take for granted
+- Be responsive (don't make people wait)
+- Be consistent, help members of the community
+
+## Resources
+
+- https://www.firsttimersonly.com/
+- https://up-for-grabs.net/#/
