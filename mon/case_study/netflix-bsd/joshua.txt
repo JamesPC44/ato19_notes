@@ -1,0 +1,144 @@
+## Website
+
+https://allthingsopen.org/talk/netflix-and-freebsd-using-open-source-to-deliver-streaming-video/
+
+## Notes
+
+- cloud compute + CDN
+- startup data, box art from CDN
+- recommendations from cloud compute
+- video also contacts compute!
+  - analytics
+  - which CDN to use
+  - previews are from CDN, static
+
+### CDN
+
+- "OpenConnect"
+- 100 Tb/s at peak
+- increase of 1% is a lot of data
+- small improvements are highly valued - fun place to work
+- workhorse is Open Connect Applicance
+  - 40 Gb/s
+  - 248 TB
+- mostly commodity hardware!
+- lots of OSS
+  - nginx
+  - FreeBSD
+  - perl, python, some go
+
+### How it works
+
+- Video apps report back quality of video
+  - Informs software decisions in a very fine-grained way
+- Data read, encrypted from TLS, sent through ports
+- Not hard to build webserver at scale _if_ you spend a lot of money
+- Trick is making it cheap
+- Keep as much data in kernel as possible
+  - async_send_file
+  - no dpdk, no most things in userspace
+- 90 Gb/s from BSD and commodity parts
+
+### BSD
+
+- descended from AT&T Unix
+- Netflix tracks FreeBSD HEAD!
+- time to deploy commit to BSD master is 4-18 weeks
+- 5 weeks of dev, 5 weeks of test/deploy
+  - Merge FreeBSD upstream
+  - Merge feature branches
+  - CI
+  - Regression tests
+  - dev testing (widespread - 1.5% of all traffic!)
+  - canary -> phased rollout in as few as 5 days
+
+### BSD Features
+
+- Add new hardware (drivers, etc.)
+- Performance features
+  - NUMA (https://en.wikipedia.org/wiki/Non-uniform_memory_access)
+  - Async sendfile - doesn't lock (https://news.ycombinator.com/item?id=10869311)
+    - Avoids userspace copies
+  - Kernel TLS encrypts without copying
+
+### Why track HEAD?
+
+Two models of cycles:
+
+1. Vicious
+  Infrequent merges -> Conflicts/Regressions -> Slower feature velocity -> Infrequent merges
+  - need to rewrite features in some cases (new APIs)
+  - spend a lot of time to stay in the same place
+2. Virtuous
+  Frequent merges -> Fewer conflicts -> faster feature velocity
+  - merge conflicts are easier to resolve
+  - bugs are managable
+  - can even do binary search to find commit that introduced problem (because delta is small)
+  - can spend less time, fewer people on merges
+  - better collaboration with upstream
+  - develop feature exactly one time
+
+### Why keep local diffs?
+
+- NDAs (< 100 lines)
+- code specific to amd64, don't want to rewrite to make generic
+- upstream any code we can
+
+### Why track HEAD? (redux)
+
+- Amortizes merge costs
+- BSD gets early intensive testing
+- incentive to upstream code
+
+### Possible objections
+
+- Not stable (actually, it is)
+  - FreeBSD requires HEAD to be as stable as possible
+  - imperfect code gets feedback _very_ quickly
+- Why should you be the ones to find the bugs?
+  - Tragedy of the commons
+  - Will other people find the bugs? Netflix tests at scale
+- Aren't there security bugs? (probably not)
+  - response to security bugs is faster, don't need to backport
+- No one runs on dev! (not true)
+- Cost to merge every month
+  - less than merging every year (amortized cost)
+- New bugs every month
+  - Some are self-inflicted
+  - Some are revealed by changes upstream
+  - If bugs from upstream, you see them faster
+  - Get features very quickly
+
+## Summary
+
+- Deliver data efficiently, iterate and add new features rapidly
+- Good model for interactive with upstream projects
+
+## Questions
+
+- What about updates that brick the box?
+  - Don't test on inaccessible boxes
+  - See enough testing on those to be confident
+  - Some bugs do get out - those are just painful
+- How do you convince management and devs to track HEAD?
+  - Developers prefer to track HEAD
+  - Already contribute to upstream
+  - Strong culture of 'freedom and responsibility'
+  - Rarely does anyone tell you what you have to do
+    - but you are responsible for your own choices
+- Why FreeBSD?
+  - Questions about GPLv3
+  - Went with FreeBSD primarily for license
+  - Stick around for sunk cost (no other compelling options)
+  - Better performance from FreeBSD
+  - Community
+    - insists on near-perfection
+    - healthy and collaborative
+- Are other teams (at Netflix) tracking HEAD?
+  - I don't know
+- How long did it take to merge when you switched?
+  - Stable 11 and HEAD were essentially the same
+  - Very good time since we had to merge changes anyway
+  - 2 months
+- ??
+  - Can cherry-pick security fixes/patches very quickly
