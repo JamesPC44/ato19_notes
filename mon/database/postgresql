@@ -1,0 +1,22 @@
+Postgresql
+* (9.3) Enable page checksum features
+* (9.4) Materialized Views
+* 9.4 support ends Feb 2020
+* 9.5 - Row level security - use instead of separate db?
+* 9.5 - BRIN indexes - good for time range pulls
+* 9.5 - Foreign table inheritance - simplified sharding (situs DB uses)
+* 9.6 - parallelized intro’d (don’t enable until 11)
+Current version of 10 -> 10.10
+* 10, combined first two numbers (10.10)
+* 10 - intro partitioning (use 11)
+ * Learn.crunchydata.com => postgresql admin -> PG Features -> Native Partitioning
+* 10 - SCRA-256SCRAM for passwrods.  Does rails support?
+* 11 - first steps for stored procedures
+ * Doesn’t yet return value
+* 12 - Out 10/7/2019
+* 12 - remove recovery.conf
+* 12 - native partitioning improvements
+* 12 - ‘generated columns’ - replace triggers
+* 12 - pg_checksums can be done with existing db - do offline
+http://slides.keithf4.com/dontforget
+

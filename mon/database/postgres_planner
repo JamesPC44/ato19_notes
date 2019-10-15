@@ -1,0 +1,15 @@
+Postgres Planner
+* SQL -> Parser -> Query Tree -> Planner -> Plan Tree -> Execution
+* Can turn on Query tree with debug switch
+* If query is ‘perfect’ and not getting planned performance
+ * Make sure plan retains semantic correctness)
+ * Don’t inhibit downstream optimizations
+  * Output of one should flow into results of other
+* Perform your join first on the smallest tableset 
+* Preprocess_explanation - 
+* Can add preprocessing optimizations prior to plan execution
+* Testing available to ensure pre-processing change doesn’t impact other queries?
+ * No.  Large sets of queries to show results consistency but nothing actually can compare all the query plans in each test to ensure equivalenc
+* https://github.com/melanieplageman
+* https://github.com/melanieplageman/debugging_planner
+
